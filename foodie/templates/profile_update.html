@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} | {{load_profile.first_name}} | {% endblock title %}
+
+{% block header %} {% include 'header.html' %} {% endblock header %}
+
+{% block content %}
+
+    <div class="container2">
+        <div class="profile-box">
+            
+            <form action="{% url 'profile_update' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-danger" type="submit"> Update </button>
+            </form>
+
+        </div>
+    </div>
+
+    {% endblock content %}
+
+{% block footer %} {% include 'footer.html' %}  {% endblock footer %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% load mathfilters %} {% load static %} {% load humanize %} {% block header %} {% include 'header.html' %} {% endblock header %} {% block content %}
+<div class="wrapper">
+    <h1>Shopping Cart</h1>
+    <div class="project">
+
+
+        {% if shopcart %} {% for item in shopcart %}
+
+        <div class="shop">
+            <div class="box">
+                <img src="{{item.meal.image.url}}" alt="">
+                <div class="content10">
+                    <h5>{{item.meal | title}}</h5>
+                    Price: {% if item.meal.discount %}
+                    <span>{{item.meal.discount}}</span> {% else %}
+                    <span>{{item.meal.price}}</span> {% endif %}
+                    <p class="unit">Quatity:{{item.quantity}} </p>
+                    
+                    <p>Amount:{% if item.meal.discount %}
+                        <span>{{item.meal.discount|mul:item.quantity}}</span> {% else %}
+                        <span>{{item.meal.price|mul:item.quantity}}</span> {% endif %}
+                    </p>
+                    <form action="{% url 'remove_item' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="deleteitem" value="{{item.id}}">
+
+                        <button type="submit" class="btn-area">
+                            <i class="fa fa-trash"></i>
+                            <span class="btn2">Remove</span>
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+            {% endfor %} {% endif %}
+
+
+        </div>
+        <div class="right-bar">
+            <p><span>Subtotal</span> <span>{{subtotal}}</span></p>
+            <hr>
+            <p><span>Vat (7.5%)</span> <span>{{vat}}</span></p>
+            <hr>
+            <p><span>Shipping</span> <span></span></p>
+            <hr>
+            <p><span>Total</span> <span>{{total}}</span></p>
+
+
+
+            <a href="{% url 'checkout' %}"><i class="fa fa-shopping-cart"></i>Checkout</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

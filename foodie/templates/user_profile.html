@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block 'title' %} | User Profile   {% endblock 'title' %}
+
+{% block header %} 
+{% include "header.html" %} 
+{% endblock header %}
+
+{% block content %}
+
+<div class="container text-center text-info font-weight-bold mt-5 mb-5">
+    <p> Username: {{profile.user.username}}  </p>
+    <p> First name: {{profile.first_name}} </p>
+    <p>Last name: {{profile.last_name}} </p>
+    <p> Email: {{profile.user.email}} </p>
+    <p> Address: {{profile.address}} </p>  
+    <p> State: {{profile.state}} </p>
+    <p> Image: <img src="{{profile.image.url}}" style="width: 100px;"> </p>
+  </div>
+
+{% endblock content %}
+
+{% block prefoot %} {% include "prefoot.html" %} {% endblock prefoot %}
+
+{% block footer %} {% include "footer.html" %} {% endblock footer %}

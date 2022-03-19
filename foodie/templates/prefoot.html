@@ -1,0 +1,110 @@
+ {% load static %}
+
+
+<div class="content" id="mybox2">
+    <h2 class="text-warning text-center">Foodlum Kitchen</h2>
+    <h3 class="text-primary text-center"> I'm Loving Eat.. </h3>
+</div>
+
+
+<div class="container-fluid mybox2"></div>
+
+
+
+<!-- map  area -->
+<div class="container-fluid" id="prefoot">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <div class="mpbk">
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.3835335970916!2d3.344575014266792!3d6.599166024111131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9231a8afe793%3A0x5f297da31d68daec!2sAnchorsoft%20Academy!5e0!3m2!1sen!2sng!4v1644438307077!5m2!1sen!2sng"
+                        width="500" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <div class="fmbk">
+                <div class="contact-form">
+                    <h3> Contact Us </h3>
+                    <form action="{% url 'contact' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="text" placeholder="Name" name="name">
+                        <input type="text" placeholder="Phone Number" name="phone">
+                        <input type="text" placeholder="subject" name="subject">
+                        <textarea placeholder="Message" name="message"></textarea>
+                        <input type="submit" value="Send">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- map area done -->
+
+
+<!-- second foot -->
+
+<div class="container-fluid foot">
+    <div class="row text-center p-4">
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+            <img src="{% static '' %}img/looy.png" class="mb-2 mt-4 w-50">
+            <a href="">
+                <h5>Our Team</h5>
+            </a>
+
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 pt-3">
+
+            <a href="">
+                <h5>Foodlum Delivery</h5>
+            </a>
+            <a href="">
+                <h5>Feedback</h5>
+            </a>
+            <a href="">
+                <h5>Mobile Order & Pay</h5>
+            </a>
+            <a href="">
+                <h5>For Reservation</h5>
+            </a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+            <ul class="list-unstyled">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Varieties</a></li>
+            </ul>
+        </div>
+
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+            {% comment %} <ul class="list-unstyled">
+                <li>
+                    <a href="#"><img src="{% static '' %}img/YfpFOL-logo-instagram-free-transparent.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="{% static '' %}img/twitter-logo-vector-png-clipart-1.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="{% static '' %}img/background-facebook-logo-5.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="{% static '' %}img/174857.jpg" alt=""></a>
+                </li> {% endcomment %}
+                <div class="social-icon">
+                    <li>
+                        <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                        <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                        <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <!-- second foot -->

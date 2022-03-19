@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% load static %} {% load humanize %} {% block header %} {% include 'header.html' %} {% endblock header %} {% block content %}
+
+<div class="container-fluid thank">
+    <div class="text you">
+        <h1>THANK YOU!</h1>
+        <h3>{{profile.user.username | title}} </h3>
+        <h4>for choosing Foodlum</h4>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem facilis
+             <br> beatae dolorum tempora illo libero illum tempore doloribus accusantium! 
+             <br> Nulla itaque delectus tempore eius! Praesentium facere asperiores sit 
+             <br> suscipit illo iusto
+            aliquam repudiandae architecto illum. </p>
+
+        <!-- <button class="btns" type="submit" value="Login"> BACK TO HOME</button> -->
+        <a href=" {% url 'index' %}" class="btns btn-warning">BACK TO HOME</a>
+    </div>
+</div>
+
+{% endblock content %} {% block footer %} {% include 'footer.html' %} {% endblock footer %}

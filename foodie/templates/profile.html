@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% load static %} {% load humanize %} {% block header %} {% include "header.html" %} {% endblock header %} {% block content %}
+<div class="container2">
+    <form action="{% url 'profile' %}" method="POST">
+        <div class="text-center text-white">
+            <h1>User Profile</h1>
+        </div>
+        <div class="prof">
+            <div class="pix">
+                <img src="{{profile.image.url}}" class="propic">
+            </div>
+            <div class="profile-box">
+
+                <h2>Username: {{profile.user.username | title}} </h2>
+                <h3>Firstname: {{profile.first_name | title}}</h3>
+                <h3>Lastname: {{profile.last_name | title}}</h3>
+                <h3>Email: {{profile.user.email | title}}</h3>
+                <h3>Phone: {{profile.phone}}</h3>
+                <h3>Address: {{profile.address | title}}</h3>
+                <h3>State: {{profile.state | title}}</h3>
+
+
+                <a class="text-white btn btn-success" href="{% url 'profile_update'  %}">Profile Update </a>
+                <a class="text-white btn btn-success" href="{% url 'password-update'  %}">Password Update </a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

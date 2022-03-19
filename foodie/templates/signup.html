@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}
+  | User Login
+{% endblock title %}
+
+
+{% block header %}
+  {% include "header.html" %}
+{% endblock header %}
+
+
+
+
+{% block content %}
+  
+
+<div class="container-fluid ctnfr">
+  <div class="row">
+      <div class="col-12 col-md-4 col-lg-4">
+
+      </div>
+      <div class="col-12 col-md-4 col-lg-4 ">
+          <div class="login-box dele">
+              <h1>Register</h1>
+
+              <form action="{% url 'signup' %}" method="POST">
+              {% csrf_token %}
+                  <div class="textbox">
+
+                      <input type="text" name="username" placeholder="Username">
+                  </div>
+
+                  <div class="textbox">
+
+                      <input type="text" name="first_name" placeholder="Firstname">
+                  </div>
+                  <div class="textbox">
+
+                      <input type="text" name="last_name" placeholder="Lastname">
+                  </div>
+                  <div class="textbox">
+
+                      <input type="text" name="phone" placeholder="Phone">
+                  </div>
+                    <div class="textboxxx">
+
+                        <input type="hidden" name="image" value="profile/male.jpg" placeholder="">  
+                    </div>
+                  
+                  <div class="textbox">
+
+                      <input type="email" name="email" placeholder="Email">
+                  </div>
+                  <div class="textbox">
+
+                      <input type="password" name="password1" placeholder="Password">
+                  </div>
+                  <div class="textbox">
+
+                      <input type="password" name="password2" placeholder="Confirm Password">
+                  </div>
+
+                  <input class="btn4" type="submit" value="Sign up">
+              </form>
+          </div>
+      </div>
+      <div class="col-12 col-md-4 col-lg-4">
+
+      </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+
+

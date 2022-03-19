@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% load static %}
+
+{% block header %}
+  {% include "header.html" %}
+{% endblock header %}
+
+
+
+{% block content %}
+  
+<div class="container-fluid mt-5 mb-5">
+   <h1 class="subject"> Meals Varieties </h1>
+    <div class="row">
+      <!-- box 1 -->
+      
+      {% if varieties %}
+        {% for item in varieties %}
+          <div class="col-6 col-sm-6 col-md-6 col-lg-3 w-25">
+              <div class="card w-100 pr-4 mt-5 text-center ">
+                <a href="{% url 'variety' item.id item.slug  %}" class=""> <img src="{{item.image.url}}" class="card-img-top w-100 mt-3 ml-2"> </a>
+                  <div class="card-body mb-4 pt-5">
+                    <h5 class="card-title mb-5">{{item.name | title}}</h5>
+                    <p class="card-text mb-3">
+                      
+                      
+                    </p>
+                    <a href="{% url 'variety' item.id item.slug  %}" class="btn btn-warning">varieties Here</a>
+                  </div>
+              </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+      <!-- box 1 done -->
+    </div>
+</div>
+
+{% endblock content %}
+
+
+
+
+{% block footer %}
+  {% include "footer.html" %}
+{% endblock footer %}

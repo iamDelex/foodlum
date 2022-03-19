@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% load static %} {% load humanize %} {% block header %} {% include 'header.html' %} {% endblock header %} {% block content %} {% if post %}
+<div class="text-center">
+    <h1>Search Result Found</h1>
+</div>
+{% for item in post %}
+<h2>
+    <a href="/index/{{item.slug}}">
+
+
+
+        <div class="container-fluid  mt-5 mb-5">
+            <div class="text-center">
+                <a href="{% url 'mealss' item.id item.slug %}"> {{item.meal | title}}</h1> </a>
+            </div>
+            <div class="row">
+                <!-- box 1 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 w-25"></div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 w-25">
+                    <div class="card w-100 pr-4 mt-2 text-center ">
+                        <a href="{% url 'mealss' item.id item.slug %}"><img src="{{item.image.url}} " class="card-img-top w-100 mt-3 ml-2 "> </a>
+                        <div class="card-body mb-4 pt-5 ">
+                            <h5 class="card-title mb-5 ">{{item.meal | title}}</h5>
+                            <p class="card-text mb-3 ">
+
+                                {% if item.discount %}
+                                <del>{{item.price|floatformat:2|intcomma}}</del>
+                                <span>{{item.discount|floatformat:2|intcomma}}</span> {% else %}
+                                <span>{{item.price|floatformat:2|intcomma}}</span> {% endif %}
+                            </p>
+
+                            <a href="{% url 'mealss' item.id item.slug %} " class="btn btn-warning ">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 w-25 "></div>
+                <!-- box 1 done -->
+            </div>
+        </div>
+
+
+
+    </a>
+</h2>
+{% endfor %} {% else %}
+<h2>No result found</h2>
+{% endif %} {% endblock content %}

@@ -1,0 +1,102 @@
+{% load sample_tag %} {% load static %}
+
+
+
+
+<!-- <div class="search">
+    <form class="form-inline my-2 my-lg-0" action="% url 'search' %" method="get" id="search">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</div> -->
+{% comment %} <div class="search">
+    <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="POST" id="search">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</div> {% endcomment %}
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-light ">
+    <a class="navbar-brand" href="{% url 'index' %}"> <img src="{% static '' %}img/looy.png" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href=" {% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+
+            
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Varieties
+          </a>
+                <div class="dropdown-menu mt-2" aria-labelledby="navbarDropdown">
+
+                    <a class="dropdown-item text-black" href="{% url 'vary' %}">Variety</a> {% if varieties %} {% for item in varieties %}
+                    <a class="dropdown-item text-black" href="{% url 'variety' item.id item.slug  %}">{{item.name|title}}</a> {% endfor %} {% endif %}
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% intralink 'index' 'prefoot' %}">Contact</a>
+            </li>
+            
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0 mx-auto" action="{% url 'search' %}" method="POST" id="search">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+        
+        <div class="text">
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="welcome text-success"> Welcome
+                      {% if user.profile.first_name %}
+                        {{user.profile.first_name | title}}
+                      {% else %}
+                        {{user.username}}
+                      {% endif %}
+                  </a>
+                </li>
+            </ul>
+            <a class="text-white btn " href="{% url 'profile'  %}"><img src="{{user.profile.image.url}}" style="width: 40px;"> </a>
+            <a class="text-white btn btn-info" href="{% url 'profile'  %}">Profile</a>
+            <a class="text-white btn btn-danger" href="{% url 'logoutfunc'  %}">Logout</a>
+            <a href="{% url 'cart' %}"><i class="fa fa-shopping-cart">
+            {% if cartcount > 0 %}
+            <span class="badge badge-danger"> {{cartcount}} </span>
+            {% else %}
+            <span class="badge badge-danger"> 0 </span>
+            {% endif %}
+            </i></a> {% else %}
+            <a class="text-white btn btn-success" href="{% url 'signin'  %}">Signin</a>
+            <a class="text-white btn btn-info" href="{% url 'signup' %}">Signup</a> {% endif %}
+
+        </div>
+</nav>
+
+
+    {% comment %} <form class="form-inline my-2 my-lg-0" style="align-left" action="{% url 'search' %}" method="POST" id="search">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> {% endcomment %}
+
+
+
+{% if messages %} {% for item in messages %}
+<div class="alert alert-black text-center" role="alert">
+    {{item}}
+</div>
+{% endfor %} {% endif %}

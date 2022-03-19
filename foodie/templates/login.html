@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block title %}
+  | User Login
+{% endblock title %}
+
+
+{% block header %}
+  {% include "header.html" %}
+{% endblock header %}
+
+
+{% block content %}
+  
+
+<div class="container-fluid ctnf">
+  <div class="row">
+      <div class="col-12 col-md-4 col-lg-4">
+
+      </div>
+      <div class="col-12 col-md-4 col-lg-4 ">
+          <div class="login-box">
+              <h1>Login</h1>
+              <form action="{% url 'signin' %}" method="POST">
+              {% csrf_token %}
+                  <div class="textbox">
+                      <i class="fa-solid fa-user"></i>
+                      <input type="text" name="username" placeholder="Username">
+                  </div>
+
+                  <div class="textbox">
+                      <i class="fa-solid fa-lock"></i>
+                      <input type="password" name="password" placeholder="Password">
+                  </div>
+
+                  <!-- <input class="btn" type="submit" value="Login"> -->
+                  <button class="btnl" type="submit" value="Login"> Login</button>
+              </form>
+          </div>
+      </div>
+      <div class="col-12 col-md-4 col-lg-4">
+
+      </div>
+  </div>
+</div>
+
+  
+
+
+{% endblock content %}
+
+
+{% comment %} {% block prefoot %}
+  {% include "prefoot.html" %}
+{% endblock prefoot %} {% endcomment %}
+
+
+{% block footer %}
+  {% include "footer.html" %}
+{% endblock footer %}

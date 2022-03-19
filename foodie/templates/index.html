@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% load static %}
+
+{% block header %}
+  {% include "header.html" %}
+{% endblock header %}
+
+{% block banner %}
+  {% include "banner.html" %}
+{% endblock banner %}
+
+{% block content %}
+  
+<div class="container-fluid mt-5 mb-5">
+   <h1 class="subject"> Meals Varieties </h1>
+    <div class="row">
+      <!-- box 1 -->
+      
+      {% if varieties %}
+        {% for item in varieties %}
+          <div class="col-6 col-sm-6 col-md-6 col-lg-3 w-30">
+              <div class="card w-100 pr-4 mt-5 text-center ">
+                <a href="{% url 'variety' item.id item.slug  %}" class=""> <img src="{{item.image.url}}" class="card-img-top w-100 mt-3 ml-2"> </a>
+                  <div class="card-body mb-4 pt-5">
+                    <h5 class="card-title mb-5">{{item.name | title}}</h5>
+                    <p class="card-text mb-3">
+                      
+                      
+                    </p>
+                    <a href="{% url 'variety' item.id item.slug  %}" class="btn btn-warning">Open</a>
+                  </div>
+              </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+      <!-- box 1 done -->
+    </div>
+</div>
+
+<div class="container-fluid mt-5 mb-5">
+  <h1 class="subject"> Breakfast Meals </h1>
+    <div class="row">
+      <!-- box 1 -->
+      
+      {% if breakfast %}
+        {% for food in breakfast %}
+          <div class="col-6 col-sm-6 col-md-6 col-lg-3 w-25">
+              <div class="card w-100 pr-4 mt-5 text-center ">
+                <a href="{% url 'meals' %}" class=""> <img src="{{food.image.url}}" class="card-img-top w-100 mt-3 ml-2"> </a>
+                  <div class="card-body mb-4 pt-5">
+                    <h5 class="card-title mb-5">{{food.meal | title}}</h5>
+                    <p class="card-text mb-3">
+                      
+                      {% if food.discount %}
+                      <del>{{food.price|floatformat:2|intcomma}}</del>
+                      <span>{{food.discount|floatformat:2|intcomma}}</span>
+                      {% else %}
+                        <span>{{food.price|floatformat:2|intcomma}}</span>
+                      {% endif %}
+                    </p>
+                    <a href="{% url 'meals' %}" class="btn btn-warning">View More</a>
+                  </div>
+              </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+      <!-- box 1 done -->
+    </div>
+</div>
+
+
+<div class="container-fluid mt-5 mb-5">
+  <h1 class="subject"> Lunch Meals</h1>
+    <div class="row">
+      <!-- box 1 -->
+      {% if lunch %}
+      {% for food in lunch %}
+        <div class="col-6 col-sm-6 col-md-6 col-lg-3 w-25">
+            <div class="card w-100 pr-4 mt-5 text-center ">
+              <a href="{% url 'meals' %}" class=""><img src="{{food.image.url}}" class="card-img-top w-100 mt-3 ml-2"></a>
+                <div class="card-body mb-4 pt-5">
+                  <h5 class="card-title mb-5">{{food.meal | title}}</h5>
+                  <p class="card-text mb-3">
+                    
+                    {% if food.discount %}
+                    <del>{{food.price|floatformat:2|intcomma}}</del>
+                    <span>{{food.discount|floatformat:2|intcomma}}</span>
+                    {% else %}
+                      <span>{{food.price|floatformat:2|intcomma}}</span>
+                    {% endif %}
+                  </p>
+                  <a href="{% url 'meals' %}" class="btn btn-warning">View More</a>
+                </div>
+            </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+        <!-- box 1 -->
+    </div>
+</div>
+
+
+<div class="container-fluid mt-5 mb-5">
+  <h1 class="subject"> Dinner Meals  </h1>
+    <div class="row">
+      <!-- box 1 -->
+      {% if dinner %}
+      {% for food in dinner %}
+        <div class="col-6 col-sm-6 col-md-6 col-lg-3 w-25">
+            <div class="card w-100 pr-4 mt-5 text-center ">
+              <a href="{% url 'meals' %}" class=""><img src="{{food.image.url}}" class="card-img-top w-100 mt-3 ml-2"></a>
+                <div class="card-body mb-4 pt-5">
+                  <h5 class="card-title mb-5">{{food.meal | title}}</h5>
+                  <p class="card-text mb-3">
+                    
+                    {% if food.discount %}
+                    <del>{{food.price|floatformat:2|intcomma}}</del>
+                    <span>{{food.discount|floatformat:2|intcomma}}</span>
+                    {% else %}
+                      <span>{{food.price|floatformat:2|intcomma}}</span>
+                    {% endif %}
+                  </p>
+                  <a href="{% url 'meals' %}" class="btn btn-warning">View More</a>
+                </div>
+            </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+        <!-- box 1 -->
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block prefoot %}
+  {% include "prefoot.html" %}
+{% endblock prefoot %}
+
+
+{% block footer %}
+  {% include "footer.html" %}
+{% endblock footer %}

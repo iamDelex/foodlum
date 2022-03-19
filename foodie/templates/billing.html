@@ -1,0 +1,112 @@
+{% extends 'base.html' %} {% load static %} {% load mathfilters %} {% block header %} {% include 'header.html' %} {% endblock header %} {% block content %} {% load humanize %}
+<div class="container mb-5">
+    <h2>Billing Information</h2>
+</div>
+
+<div class="wrapper">
+    <h1>Shopping Cart</h1>
+    <div class="project">
+
+
+        {% if shopcart %} {% for item in shopcart %}
+
+
+        <div class="shop">
+            <div class="box">
+                <img src="{{item.meal.image.url}}" alt="">
+                <div class="content10">
+                    <h5>{{item.meal | title}}</h5>
+                    Price: {% if item.meal.discount %}
+                    <span>{{item.meal.discount}}</span> {% else %}
+                    <span>{{item.meal.price}}</span> {% endif %}
+                    <p class="unit">Quatity:{{item.quantity}} </p>
+                    <p class="unit">Spice:{{item.how_spicey}} </p>
+                    Amount:{% if item.meal.discount %}
+                    <span>{{item.meal.discount|mul:item.quantity}}</span> {% else %}
+                    <span>{{item.meal.price|mul:item.quantity}}</span> {% endif %}
+
+
+                </div>
+            </div>
+            {% endfor %} {% endif %}
+
+            <div class="text-center">
+                <p class="text-white btn btn-info"><span>Total</span> <span>{{total}}</span></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="checkout-details">
+        <form action="{% url 'placeorder' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group ">
+                    <label for="Text"></label>
+                    
+                </div>
+                <div class="form-group ">
+                    <label for="Text"></label>
+                    <input type="hidden" name="get_total" id="Text" placeholder="Last Name" value="{{total}}">
+                </div>
+                <div class="form-group mr-3">
+                    <label for="Text">First Name</label>
+                    <input type="text" class="form-control" id="Text" placeholder="Last Name" value="{{profile.first_name | title}}">
+                </div>
+                <div class="form-group">
+                    <label for="Text">Last Name</label>
+                    <input type="text" class="form-control" id="Text" placeholder="Last Name" value="{{profile.last_name | title}}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group mr-3">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" id="Text" placeholder="Email Address" value="{{profile.user.email | title}}">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" class="form-control" id="Text" placeholder="Phone Number" value="{{profile.phone}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Address">Address</label>
+                <input type="text" class="form-control" placeholder="Address" value="" name="address">
+                {% comment %} {{profile.address | title}} {% endcomment %}
+            </div>
+            <div class="form-row">
+                <div class="form-group mr-3">
+                    <label for="Address">Location</label>
+                    <input type="text" class="form-control" id="Text" placeholder="Location">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Postal/Zip Code</label>
+                    <input type="text" class="form-control" id="Text" placeholder="Postal/Zip Code">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Country">state</label>
+                <input type="text" class="form-control" placeholder="State" value="{{profile.state | title}}">
+            </div>
+            <div>
+                <input type="checkbox" name="" id="">
+                <label for="">Shipping to same address</label>
+            </div>
+            <button class="btn btn-outline-success " >Place Order</button>
+        </form>
+        <div class="">
+            <div>
+                <div class="py-3">
+                    <img src="{% static '' %}img/Safecheckout.jpg" style="width: 20rem;">
+                </div>
+                <div class="mb-3">
+                    <small class="text-muted"><i>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</i></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

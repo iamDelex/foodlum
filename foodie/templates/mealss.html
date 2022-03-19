@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% load static %} {% load humanize %} {% block title %} | Details {% endblock title %} {% block header %} {% include "header.html" %} {% endblock header %} {% block content %}
+
+
+<div class="container-fluid mt-5 mb-5">
+    <h1 class="subject mb-5"> {{mealss.meal|title}} </h1>
+    <div class="row">
+        <!-- box 1 -->
+
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4 w-20 ">
+            <img src="" class="card-img-top w-100 mt-2 ml-0">
+        </div>
+
+        <div class="col-11 col-sm-6 col-md-4 col-lg-4 w-55">
+            <div class="card w-100 pr-4 text-center ">
+                <img src="{{mealss.image.url}}" class="card-img-top w-100 mt-3 ml-2">
+                <div class="card-body mb-2 pt-3">
+                    <h5 class="card-title mb-3">{{mealss.meal | title}}</h5>
+                    <p class="card-text mb-2">
+
+                        {% if mealss.discount %}
+                        <del>{{mealss.price|floatformat:2|intcomma}}</del>
+                        <span>{{mealss.discount|floatformat:2|intcomma}}</span> {% else %}
+                        <span>{{mealss.price|floatformat:2|intcomma}}</span> {% endif %}
+                    </p>
+                    <p class="card-text mb-3">{{mealss.menu}}</p>
+                    <p class="card-text mb-3">{{mealss.time}}</p>
+
+                </div>
+                <form action="{% url 'addtocart' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+
+                        <label from="">Quantity</label>
+                        <input type="number" name="quantity" placeholder="Qty" value="1" min="{{mealss.min_order}}" max="{{mealss.max_order}}">
+                        <input type="hidden" name="mealid" value="{{mealss.id}}">
+
+                    </div>
+
+                    <div class="more">
+                        <h6>kindly confirm to us how Spicy you want your meal to be</h6>
+                        <input type="text" name="how_spicey" id="exampleInputText1" aria-describedby="textHelp">
+
+                    </div>
+                    
+                    <button type="submit" class="btn-info mybtn">Add To Cart</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4 w-20 ">
+            <img src="" class="card-img-top w-100 mt-2 ml-0">
+        </div>
+
+        <!-- box 1 done -->
+    </div>
+</div>
+
+
+
+{% endblock content %}
+ {% comment %} {% block prefoot %} {% include "prefoot.html" %} {% endblock prefoot %}  {% endcomment %}
+ {% block footer %} {% include "footer.html" %} {% endblock footer %}
